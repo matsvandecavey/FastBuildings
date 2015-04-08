@@ -1,7 +1,7 @@
 within FastBuildings.Zones_stochastic.BaseClasses.Partials;
 partial model Partial_SZ_Zon
   "Single state, only zone temperature, array of windows"
-  extends FastBuildings.Zones_stochastic.BaseClasses.Partials.Partial_SZ;
+  extends FastBuildings.Zones.BaseClasses.Partials.Partial_SZ;
   parameter Integer nIrr = 1 "Number of irradiation inputs/windows";
   parameter SI.HeatCapacity cZon = 1 "Thermal capacity of the zone";
   parameter SI.ThermalResistance rWal = 1
