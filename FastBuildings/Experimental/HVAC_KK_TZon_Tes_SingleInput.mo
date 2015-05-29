@@ -13,11 +13,14 @@ model HVAC_KK_TZon_Tes_SingleInput
   parameter SI.ThermalResistance rTes = 1
     "Total thermal resistance from TES to technical room, in K/W";
 
-  GB_QSet_ConstantEta gb
+  replaceable GB_QSet_ConstantEta gb constrainedby
+    FastBuildings.Experimental.Partial_HeatProduction
     annotation (Placement(transformation(extent={{72,30},{92,50}})));
-  HP_AW_QSet_ConstantCOP hp1
+  replaceable HP_AW_QSet_ConstantCOP hp1 constrainedby
+    FastBuildings.Experimental.Partial_HeatProduction
     annotation (Placement(transformation(extent={{72,-10},{92,10}})));
-  HP_AW_QSet_ConstantCOP hp2
+  replaceable HP_AW_QSet_ConstantCOP hp2 constrainedby
+    FastBuildings.Experimental.Partial_HeatProduction
     annotation (Placement(transformation(extent={{72,-50},{92,-30}})));
   Zones.BaseClasses.Capacitor capHea(c=cHea)
     annotation (Placement(transformation(extent={{30,60},{50,80}})));

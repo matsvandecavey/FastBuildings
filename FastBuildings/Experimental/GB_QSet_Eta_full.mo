@@ -25,14 +25,14 @@ model GB_QSet_Eta_full
   The parameters can (and some will) be zero. 
   */
 
-  parameter Real Intercept = 0;
-  parameter Real TAmb7 = 0;
-  parameter Real TSup35 = 0;
-  parameter Real Q86000 = 0;
-  parameter Real TAmb7_TSup35 = 0;
-  parameter Real TAmb7_Q86000 = 0;
-  parameter Real TSup35_Q86000 = 0;
-  parameter Real TAmb7_TSup35_Q86000 = 0;
+  parameter Real Intercept = 0 annotation(Evaluate=false);
+  parameter Real TAmb7 = 0 annotation(Evaluate=false);
+  parameter Real TSup35 = 0 annotation(Evaluate=false);
+  parameter Real Q86000 = 0 annotation(Evaluate=false);
+  parameter Real TAmb7_TSup35 = 0 annotation(Evaluate=false);
+  parameter Real TAmb7_Q86000 = 0 annotation(Evaluate=false);
+  parameter Real TSup35_Q86000 = 0 annotation(Evaluate=false);
+  parameter Real TAmb7_TSup35_Q86000 = 0 annotation(Evaluate=false);
 
   Real TAmb_7 = simFasBui.TAmb-(7+273.15);
   Real TSup_35 = heaPorHot.T-(35+273.15);
