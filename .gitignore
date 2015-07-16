@@ -6,3 +6,5 @@ dsmodel.c
 dymosim
 log.txt
 *.mat
+/FastBuildings/HVAC/*.bak-mo
+*.bak-mo
