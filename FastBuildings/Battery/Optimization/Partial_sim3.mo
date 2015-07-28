@@ -1,13 +1,11 @@
 within FastBuildings.Battery.Optimization;
-model Partial_sim
+model Partial_sim3
     input Real powEle;
     input Real I_GloHor_sat;
     input Real cEle "Electricity cost, in Euro/kWh";
     input Real cEleFeedIn "Electricity cost, in Euro/kWh";
 
-    parameter Real powPV_nom = 3*50 "kW";
-    Real powPV = powPV_nom*0.8*I_GloHor_sat
-    "Total pv production, always positive.";
+    Real powPV = 3*0.8*I_GloHor_sat*50 "Total pv production, always positive.";
 
     Modelica.SIunits.Power powBat = powBat_c - powBat_d;
     input Modelica.SIunits.Power powBat_d( start=powBat_dSta, fixed=false) = battery.powBat_d
@@ -26,7 +24,7 @@ model Partial_sim
     Modelica.Blocks.Interfaces.RealOutput SoC = battery.SoC
     "State of Charge of the battery";
     Modelica.SIunits.Energy E =  battery.E "energy level of the battery";
-    parameter Modelica.SIunits.Energy E_max = 1000*60*60*2000;
+    parameter Modelica.SIunits.Energy E_max=1000*60*60*20;
     parameter Modelica.SIunits.Efficiency DoD_max=0.8;
     parameter Modelica.SIunits.Efficiency e_d=0.98;
     parameter Modelica.SIunits.Efficiency e_c=0.92
@@ -35,4 +33,12 @@ model Partial_sim
     parameter Real powBat_dSta=0;
     parameter Real powBat_cSta=10;
 
-end Partial_sim;
+    Modelica.Blocks.Interfaces.RealOutput E_d(  start=0, fixed=true)
+    "Energy on the grid, from the battery";
+    Modelica.Blocks.Interfaces.RealOutput E_c(  start=0, fixed=true)
+    "Energy off the grid, towards the battery";
+
+equation
+    der(E_c) = powBat_c;
+    der(E_d) = powBat_d;
+end Partial_sim3;

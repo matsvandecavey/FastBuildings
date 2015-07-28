@@ -3,8 +3,8 @@ model Battery
   extends Modelica.Blocks.Interfaces.BlockIcon;
 
   // Inputs and outputs
-  Modelica.SIunits.Power powBat_d_net(final quantity="Power", final unit="W");
-  Modelica.SIunits.Power powBat_c_net(final quantity="Power", final unit="W") annotation (Placement(transformation(extent={{-120,30},{-80,70}})));
+  Modelica.SIunits.Power powBat_d_net;
+  Modelica.SIunits.Power powBat_c_net;
 
   Modelica.Blocks.Interfaces.RealInput powBat_d(final quantity="Power", final unit="W") annotation (Placement(transformation(extent={{-120,-70},{-80,-30}})));
   Modelica.Blocks.Interfaces.RealInput powBat_c(final quantity="Power", final unit="W") annotation (Placement(transformation(extent={{-120,30},{-80,70}})));
@@ -13,7 +13,7 @@ model Battery
         extent={{-20,-20},{20,20}},
         rotation=180,
         origin={-120,0})));
-  parameter Modelica.SIunits.Energy E_max=400;
+  parameter Modelica.SIunits.Energy E_max=54*3.6e6;
 
   parameter Modelica.SIunits.Efficiency eta_out=1;
   parameter Modelica.SIunits.Efficiency eta_in=1;
@@ -23,12 +23,11 @@ model Battery
   parameter Modelica.SIunits.Efficiency SoCSta=0.5;
   parameter Modelica.SIunits.Efficiency DoD_max=0.80
     "Maximum discharge [%/100]";
-  Modelica.SIunits.Energy E_min( start=DoD_max*E_max, fixed=true);
+  parameter Modelica.SIunits.Energy E_min = (1-DoD_max)  *E_max;
 
   Modelica.SIunits.Energy E;
 
 equation
-  der(E_min)=0;
   SoC = E/E_max;
   powBat_d_net = powBat_d/eta_d/eta_out;
   powBat_c_net = powBat_c*eta_c*eta_in;

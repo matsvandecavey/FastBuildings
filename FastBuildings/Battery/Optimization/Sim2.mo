@@ -1,8 +1,7 @@
 within FastBuildings.Battery.Optimization;
-partial model Sim
-    extends Partial_sim;
+model Sim2
+    extends Partial_sim2;
     input Real powDump;
     Modelica.SIunits.Power powGrid = powEle - powPV + powBat + powDump;
     Modelica.SIunits.Power powGrid_orig = powEle - powPV;
-
-end Sim;
+end Sim2;
