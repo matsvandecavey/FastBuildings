@@ -1,7 +1,7 @@
-within FastBuildings.Battery.Optimization;
-partial model Partial_ControlModel_opt_cost_tmp
+within FastBuildings.Battery.Optimization.models_extra_states;
+partial model Partial_ControlModel_opt3
   "defines some variables used in all models"
-  extends FastBuildings.Battery.Optimization.Sim_opt;
+  extends FastBuildings.Battery.Optimization.models_extra_states.Sim_opt3;
   parameter Modelica.SIunits.Power P_max_d "E_max in Joule, P in W";
   parameter Modelica.SIunits.Power P_max_c "E_max in Joule, P in W";
   parameter Real tau_E_shelf = 10;
@@ -20,12 +20,12 @@ partial model Partial_ControlModel_opt_cost_tmp
   Real cost_calc( start=0, fixed=true) "Total objective, weighted ";
 
   //Profile constraints
-  parameter Real powPV_max( min=0, max = 2*0.8*1000)
+  parameter Real powPV_max( min=0, max = 3*0.8*1000*50)
     "max controlled power out of PV system";
   parameter Real ramp_duration = 2*3600;
-  parameter Real start_increase( min = 3600*6, max=3600*10) = 3600*8;
+  parameter Real start_increase( min = 3600*6, max=3600*10);
   parameter Real stop_increase = start_increase + ramp_duration;
-  parameter Real start_decrease( min = 3600*14, max=3600*20) = 3600*18;
+  parameter Real start_decrease( min = 3600*14, max=3600*20);
   parameter Real stop_decrease = start_decrease + ramp_duration;
 
 equation
@@ -41,4 +41,4 @@ equation
         powGrid = 0;
     end if;
 
-end Partial_ControlModel_opt_cost_tmp;
+end Partial_ControlModel_opt3;

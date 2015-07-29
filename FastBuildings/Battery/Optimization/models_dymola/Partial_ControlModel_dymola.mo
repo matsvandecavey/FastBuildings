@@ -1,7 +1,7 @@
-within FastBuildings.Battery.Optimization;
+within FastBuildings.Battery.Optimization.models_dymola;
 partial model Partial_ControlModel_dymola
   "defines some variables used in all models"
-  extends FastBuildings.Battery.Optimization.Sim_dymola;
+  extends FastBuildings.Battery.Optimization.models_dymola.Sim_dymola;
   parameter Modelica.SIunits.Power P_max_d "E_max in Joule, P in W";
   parameter Modelica.SIunits.Power P_max_c "E_max in Joule, P in W";
   parameter Real tau_E_shelf = 10;
@@ -11,7 +11,4 @@ partial model Partial_ControlModel_dymola
     "price (euro) per second for battery capacity calculated for 10y use.";
 
   Real powGridTakeOff "Positive part of electricity exchange with the grid";
-  Real cost( start=0, fixed=true) "Total objective, weighted ";
-  Real cost_calc( start=0, fixed=true) "Total objective, weighted ";
-
 end Partial_ControlModel_dymola;

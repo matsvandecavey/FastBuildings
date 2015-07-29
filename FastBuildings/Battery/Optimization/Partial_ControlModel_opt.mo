@@ -16,9 +16,8 @@ partial model Partial_ControlModel_opt
   //Calculated cost
   Real cost( start=0, fixed=true) "Total objective, weighted ";
   Real cost_calc( start=0, fixed=true) "Total objective, weighted ";
-
   //Profile constraints
-  parameter Real powPV_max( min=0, max = 2000*0.8*1000)
+  parameter Real powPV_max( min=0, max = 2*0.8*1000)
     "max controlled power out of PV system";
   parameter Real ramp_duration = 2*3600;
   parameter Real start_increase( min = 3600*6, max=3600*10) = 3600*8;

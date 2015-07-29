@@ -1,4 +1,4 @@
-within FastBuildings.Battery.Optimization;
+within FastBuildings.Battery.Optimization.models_extra_states;
 model Partial_sim3
     input Real powEle;
     input Real I_GloHor_sat;
@@ -41,4 +41,8 @@ model Partial_sim3
 equation
     der(E_c) = powBat_c;
     der(E_d) = powBat_d;
+  annotation (Documentation(info="<html>
+<p>A model with more states takes more time to solve.</p>
+<p><br>In this model there are states for energy use (extra integration to avoid numeric errors calculating it afterwards)</p>
+</html>"));
 end Partial_sim3;

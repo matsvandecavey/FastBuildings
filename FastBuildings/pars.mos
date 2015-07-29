@@ -1,0 +1,6 @@
+E_max = 180000000
+DoD_max = 0.8
+e_d = 0.98
+e_c = 0.874
+tau_E_shelf = 10
+c_E_bat = 350.0

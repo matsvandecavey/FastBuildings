@@ -1,26 +1,23 @@
-within FastBuildings.Battery.Optimization;
-partial model Partial_ControlModel_opt_cost_tmp
+within FastBuildings.Battery.Optimization.models_dymola;
+model Partial_ControlModel_opt_dymola
   "defines some variables used in all models"
-  extends FastBuildings.Battery.Optimization.Sim_opt;
-  parameter Modelica.SIunits.Power P_max_d "E_max in Joule, P in W";
-  parameter Modelica.SIunits.Power P_max_c "E_max in Joule, P in W";
+  extends FastBuildings.Battery.Optimization.models_dymola.Sim_opt_dymola( E_max = 3.6e6*150);
+  parameter Modelica.SIunits.Power P_max_d = E_max/2 "E_max in Joule, P in W";
+  parameter Modelica.SIunits.Power P_max_c = E_max/2 "E_max in Joule, P in W";
   parameter Real tau_E_shelf = 10;
   parameter Real seconds_year=60*60*24*365;
   parameter Real c_E_bat = 350.0;
-  parameter Real cost_battery_capacity_per_second
+  parameter Real cost_battery_capacity_per_second= c_E_bat*E_max/3.6e6/(tau_E_shelf*seconds_year)
     "price (euro) per second for battery capacity calculated for 10y use.";
 
   input Real powGridTakeOff
     "Positive part of electricity exchange with the grid";
 
   //Calculated cost
-  Real cost( start=0, fixed=true) "Total objective, weighted ";
-  Real cost_tmp "Total objective, weighted ";
-  Real cost_calc_tmp "Total objective, weighted ";
-  Real cost_calc( start=0, fixed=true) "Total objective, weighted ";
-
+//  Real cost( start=0, fixed=true) "Total objective, weighted ";
+  //Real cost_calc( start=0, fixed=true) "Total objective, weighted ";
   //Profile constraints
-  parameter Real powPV_max( min=0, max = 2*0.8*1000)
+  parameter Real powPV_max( min=0, max = 2000*0.8*1000)= 1*0.8*1000
     "max controlled power out of PV system";
   parameter Real ramp_duration = 2*3600;
   parameter Real start_increase( min = 3600*6, max=3600*10) = 3600*8;
@@ -40,5 +37,7 @@ equation
     else
         powGrid = 0;
     end if;
-
-end Partial_ControlModel_opt_cost_tmp;
+  annotation (Documentation(info="<html>
+<p>This is how the dymola model of our optimization model would look</p>
+</html>"));
+end Partial_ControlModel_opt_dymola;

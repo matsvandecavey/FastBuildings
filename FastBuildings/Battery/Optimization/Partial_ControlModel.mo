@@ -10,7 +10,5 @@ partial model Partial_ControlModel "defines some variables used in all models"
     "price (euro) per second for battery capacity calculated for 10y use.";
 
   Real powGridTakeOff "Positive part of electricity exchange with the grid";
-  Real cost( start=0, fixed=true) "Total objective, weighted ";
-  Real cost_calc( start=0, fixed=true) "Total objective, weighted ";
 
 end Partial_ControlModel;
