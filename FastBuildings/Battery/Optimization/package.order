@@ -4,6 +4,7 @@ Sim_opt
 Sim_opt_min
 Partial_ControlModel
 Partial_ControlModel_opt
+Partial_ControlModel_opt_ramp
 Partial_ControlModel_opt_min
 Partial_ControlModel_cost_tmp
 Partial_ControlModel_opt_cost_tmp
